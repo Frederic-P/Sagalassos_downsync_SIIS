@@ -1,6 +1,5 @@
-
 backup/
-
+config.ini
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -166,3 +165,6 @@ cython_debug/
 scripts/__pycache__/color_functions.cpython-311.pyc
 Scripts/
 Include/
+config.ini
+config.ini
+config.ini
