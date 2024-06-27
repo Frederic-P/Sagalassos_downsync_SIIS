@@ -28,12 +28,17 @@ if show_warnings:
     interact.checkInput('Y', 'N')
 
 #make a backup of the original SIIS database, timestamp and zip it. 
+backup_path = os.path.join(os.getcwd(), 'backup')
+# Check if the folder exists
+if not os.path.exists(backup_path):
+    # Create the folder if it does not exist
+    os.makedirs(backup_path)
 siis_db = os.path.join(siis_path, 'SIIS_data','SIIS_database')
 hostname = socket.gethostname()
 now = datetime.now()
 datetime_string = now.strftime("%Y-%m-%d %H.%M.%S")
 zipname = hostname+'_'+datetime_string+'.zip'
-zippath = os.path.join(cur_dir, 'backup', hostname, zipname)
+zippath = os.path.join(backup_path, hostname, zipname)
 filehandles.backup_database(siis_db, zippath)
 
 #connect to the local sqlite database: 
@@ -133,7 +138,7 @@ for event in tqdm(sync_events):
                 data.append(v)
             lite_where = ' AND '.join(whereslice)
             column_updates = ', '.join(new_values)
-            query = f" UPDATE " +table+ f" \
+            query = f" UPDATE {table} \
             SET {column_updates} \
             WHERE \
                 "+ lite_where.replace('%s', '?')
@@ -177,3 +182,5 @@ lite_cursor.close()
 lite_conn.commit()
 lite_conn.close()
 pg_conn.close()
+
+e = input('Press enter to exit the application')
