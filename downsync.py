@@ -49,10 +49,10 @@ lite_cursor = lite_conn.cursor()
 #####           CONNECTING TO DATABASES: 
 #connect to the remote Postgresql database: 
 # Database connection parameters
-user = 'your_username'
-password = 'your_password'
-host = 'your_host'
-port = 'your_port'  # default is '5432'
+user = db_username
+password = db_password
+host = db_host
+port = db_port  # default is '5432'
 
 # Connect to the PostgreSQL database
 pg_conn = psycopg2.connect(
